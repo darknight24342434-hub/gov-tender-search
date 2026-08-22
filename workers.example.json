@@ -1,0 +1,33 @@
+{
+  "_comment": [
+    "Copy to workers.json (gitignored) and edit. workers.json describes your own",
+    "machines, so it never belongs in version control.",
+    "CODEX_ARGS is appended to every command unless append_codex_args is false."
+  ],
+  "workers": [
+    {
+      "name": "local",
+      "kind": "local",
+      "command": ["codex"],
+      "timeout": 240
+    },
+    {
+      "name": "box2",
+      "kind": "ssh",
+      "command": ["ssh", "user@host.example", "\"C:/path/to/codex.exe\""],
+      "timeout": 300
+    },
+    {
+      "name": "mac",
+      "kind": "ssh",
+      "command": [
+        "ssh",
+        "-i", "/path/to/your/private_key",
+        "-o", "UserKnownHostsFile=/path/to/your/known_hosts",
+        "user@host.example",
+        "/Applications/Codex.app/Contents/Resources/codex"
+      ],
+      "timeout": 300
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# Web 框架
+fastapi>=0.110
+uvicorn[standard]>=0.27
+jinja2>=3.1
+python-multipart>=0.0.9
+itsdangerous>=2.1
+
+# 設定 / HTTP
+python-dotenv>=1.0
+httpx>=0.27
+truststore>=0.9   # 用 OS 憑證庫驗證 TLS（政府站 TWCA 憑證不在 certifi 內）
+
+# 補助案通用 HTML 爬蟲（各部會頁面解析用）
+beautifulsoup4>=4.12
+lxml>=5.0
+
+# 經濟部補助入口網（Cloudflare 後面）需真實 Chrome 驅動；用已安裝的 Google Chrome，
+# 不需另下載 chromium（channel="chrome"）。其他來源不需要 playwright。
+playwright>=1.44

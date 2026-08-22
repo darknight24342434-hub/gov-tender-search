@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>影片／出版標案看板</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="appbar">
+    <div class="appbar-brand">
+      <span class="app-logo" aria-hidden="true"></span>
+      <div>
+        <h1>影片／出版標案看板</h1>
+        <p>政府電子採購網 · 等標期內</p>
+      </div>
+    </div>
+    <a class="logout" href="/logout">登出</a>
+  </header>
+
+  <main>
+    <section class="toolbar" aria-label="查詢條件">
+      <div class="mode-toggle" aria-label="檢視類型">
+        <button class="mode-chip active" type="button" data-mode="tenders">標案</button>
+        <button class="mode-chip" type="button" data-mode="grants">補助案</button>
+      </div>
+
+      <form id="search-form" class="search-form">
+        <label class="search-box">
+          <span>關鍵字</span>
+          <input id="q" type="search" autocomplete="off" placeholder="機關、案名、案號">
+        </label>
+        <label>
+          <span>起日</span>
+          <input id="deadline_from" type="date">
+        </label>
+        <label id="deadline-to-field">
+          <span>迄日</span>
+          <input id="deadline_to" type="date">
+        </label>
+        <button class="primary" type="submit">查詢</button>
+        <button id="reset-btn" type="button">重設</button>
+      </form>
+
+      <div id="scope-row" class="filter-row" aria-label="案件分類">
+        <button class="chip active" type="button" data-scope="all">全部追蹤</button>
+        <button class="chip" type="button" data-scope="video">影片影音</button>
+        <button class="chip" type="button" data-scope="publish">出版編輯</button>
+        <button class="chip" type="button" data-scope="aerial">空拍</button>
+        <button class="chip" type="button" data-scope="priority">優先處理</button>
+        <button class="chip" type="button" data-scope="urgent">急件</button>
+      </div>
+
+      <div id="grant-scope-row" class="filter-row" aria-label="補助案分類" hidden>
+        <button class="grant-chip chip active" type="button" data-grant-scope="all">全部補助</button>
+        <button class="grant-chip chip" type="button" data-grant-scope="ai">AI</button>
+        <button class="grant-chip chip" type="button" data-grant-scope="video">影片</button>
+        <button class="grant-chip chip" type="button" data-grant-scope="culture">文化</button>
+      </div>
+
+      <div class="filter-row" aria-label="截標區間">
+        <button class="range-chip active" type="button" data-range="active">等標期內</button>
+        <button class="range-chip" type="button" data-range="7">7 天內</button>
+        <button class="range-chip" type="button" data-range="30">30 天內</button>
+        <button class="range-chip" type="button" data-range="60" data-modes="tenders">2 個月內</button>
+        <button class="range-chip" type="button" data-range="365" data-modes="grants">1 年內</button>
+        <button class="range-chip" type="button" data-range="all">全部</button>
+      </div>
+    </section>
+
+    <section class="status-line">
+      <div id="meta">讀取中</div>
+      <button id="reload-btn" type="button">重新整理</button>
+    </section>
+
+    <section id="results" class="results" aria-live="polite"></section>
+    <nav id="pager" class="pager" aria-label="分頁"></nav>
+  </main>
+</body>
+</html>

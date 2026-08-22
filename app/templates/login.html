@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>登入 · 政府標案搜尋</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="login-body">
+  <form class="login-card" method="post" action="/login">
+    <div class="login-brand">
+      <span class="app-logo" aria-hidden="true"></span>
+      <h1>影片／出版標案看板</h1>
+    </div>
+    <p class="muted">請輸入存取密碼</p>
+    {% if no_password %}
+      <p class="error">尚未設定 APP_PASSWORD，系統目前鎖定。請在 .env 設定密碼後重啟。</p>
+    {% endif %}
+    {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    <input type="password" name="password" placeholder="密碼" autofocus required>
+    <button type="submit">進入</button>
+  </form>
+</body>
+</html>
